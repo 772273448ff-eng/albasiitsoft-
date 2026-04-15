@@ -3,262 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البسيط سوفت للأنظمة والتطبيقات | Albaseet Soft</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    <title>البسيط سوفت للأنظمة والتطبيقات</title>
     <style>
         :root {
-            --navy: #0a192f;
-            --maroon: #800000;
-            --light-navy: #112240;
-            --silver-bright: #ffffff; /* للبريق */
-            --silver-dark: #c0c0c0;   /* للفضي */
+            --primary-color: #001f3f; /* نيفي */
+            --secondary-color: #c0c0c0; /* فضي */
+            --accent-color: #007bff;
+            --white: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--navy); color: #ccd6f6; overflow-x: hidden; scroll-behavior: smooth; }
-
-        /* خلفية الجزيئات الفضية الخرافية */
-        #particles-js {
-            position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #112240 0%, #050a15 100%);
-        }
-
-        /* شاشة التحميل */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: var(--navy); z-index: 9999; display: flex; justify-content: center; align-items: center;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
         }
 
         header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 6%; background: rgba(10, 25, 47, 0.9);
-            backdrop-filter: blur(15px); position: fixed; width: 100%; top: 0; z-index: 1000;
-            border-bottom: 2px solid var(--maroon);
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
         }
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-container h1 { font-size: 1.4rem; color: #fff; font-weight: 900; }
-        .logo img { height: 50px; }
 
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav a { color: #fff; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
-        nav a:hover { color: var(--maroon); text-shadow: 0 0 10px var(--silver-dark); }
-
-        /* الأقسام - كل الخدمات في الرئيسية */
-        section { padding: 100px 8% 60px; min-height: auto; }
-        .hero { text-align: center; padding-top: 180px; padding-bottom: 100px; }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 50px; color: #fff; }
-        .section-title span { color: var(--maroon); position: relative; }
-        .section-title span::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: var(--maroon); }
-
-        /* تصميم الكروت والخدمات */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card {
-            background: rgba(17, 34, 64, 0.6); padding: 40px; border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.4s; position: relative; overflow: hidden;
+        /* تنسيق القائمة المنسدلة */
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
         }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--maroon); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .service-card i { font-size: 3rem; color: var(--maroon); margin-bottom: 20px; }
 
-        /* التبويبات Tabs داخل الخدمات */
-        .tabs-header { display: flex; background: rgba(0,0,0,0.2); margin: 20px 0; border-radius: 8px; overflow: hidden; }
-        .tab-btn { flex: 1; padding: 10px; border: none; background: none; color: #fff; cursor: pointer; font-family: 'Cairo'; font-weight: bold; font-size: 0.8rem; }
-        .tab-btn.active { background: var(--maroon); }
-        .tab-content { display: none; font-size: 0.9rem; line-height: 1.6; animation: fadeIn 0.5s; }
-        .tab-content.active { display: block; }
-
-        /* أزرار طلب السعر */
-        .btn-price {
-            display: inline-flex; align-items: center; gap: 10px; background: var(--maroon);
-            color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;
-            margin-top: 20px; transition: 0.3s; border: none; cursor: pointer;
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 0 15px;
         }
-        .btn-price:hover { background: #b00000; transform: scale(1.05); }
 
-        /* الفوتر */
-        footer { background: #020c1b; padding: 40px; text-align: center; border-top: 1px solid var(--maroon); }
+        .dropbtn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid var(--secondary-color);
+            cursor: pointer;
+            border-radius: 5px;
+            min-width: 200px;
+        }
 
-        /* مودال طلب السعر */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; display: none; justify-content: center; align-items: center; }
-        .modal-content { background: var(--light-navy); padding: 30px; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid var(--maroon); }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 8px; color: #fff; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: var(--accent-color);
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .hero-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 
-    <div id="particles-js"></div>
-    <div id="loader"><h2 id="welcome-text" style="color:#fff; border-left: 3px solid var(--maroon); padding-left: 15px;"></h2></div>
+<header>
+    <h1>البسيط سوفت للأنظمة والتطبيقات</h1>
+    <p>حلول تقنية سهلة الاستخدام لكل الأنشطة التجارية والصناعية</p>
+</header>
 
-    <header>
-        <div class="logo-container">
-            <div class="logo"><img src="https://www.image2url.com/r2/default/images/1776208401286-1e51dd99-86a5-4eb9-87a8-6002581a1897.gif" alt="البسيط سوفت"></div>
-            <h1>البسيط سوفت للأنظمة والتطبيقات</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#hero">الرئيسية</a></li>
-                <li><a href="#erp">ERP ENOUGH</a></li>
-                <li><a href="#apps">التطبيقات</a></li>
-                <li><a href="#contact">تواصل معنا</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="hero" class="hero" data-aos="fade-up">
-            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">الذكاء البرمجي في <span style="color: var(--maroon); text-shadow: 0 0 15px rgba(128,0,0,0.5);">أبسط صوره</span></h1>
-            <p style="font-size: 1.3rem; color: #a8b2d1;">نطور لك المستقبل.. أنظمة إدارية وتطبيقات ذكية تضع أعمالك في القمة.</p>
-            <a href="#erp" class="btn-price" style="margin-top: 40px; font-size: 1.1rem;">ابدأ رحلتك معنا</a>
-        </section>
-
-        <section id="erp">
-            <h2 class="section-title">نظام <span>ERP ENOUGH</span></h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-right">
-                    <i class="fas fa-microchip"></i>
-                    <h3>جديدنا: نظام ENOUGH المتكامل</h3>
-                    <div class="tabs-header">
-                        <button class="tab-btn active" onclick="openTab(event, 'erp-info')">الشرح</button>
-                        <button class="tab-btn" onclick="openTab(event, 'erp-feats')">المميزات</button>
-                        <button class="tab-btn" onclick="openTab(event, 'erp-vid')">فيديو</button>
-                    </div>
-                    <div id="erp-info" class="tab-content active">
-                        نظام متطور يدير الحسابات، المخازن، المبيعات، والموارد البشرية في قاعدة بيانات سحابية واحدة آمنة تماماً.
-                    </div>
-                    <div id="erp-feats" class="tab-content">
-                        • ربط مباشر بالواتساب.<br>• تقارير ذكاء أعمال (BI).<br>• دعم ضريبة القيمة المضافة بالكامل.
-                    </div>
-                    <div id="erp-vid" class="tab-content">
-                        <p style="text-align: center; color: #888;">[هنا يتم وضع فيديو النظام]</p>
-                    </div>
-                    <button class="btn-price" onclick="openQuote('نظام ERP ENOUGH')"><i class="fab fa-whatsapp"></i> طلب سعر النظام</button>
-                </div>
-
-                <div class="service-card" data-aos="fade-left">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>تطبيق الموبايل الميداني</h3>
-                    <div class="tabs-header">
-                        <button class="tab-btn active" onclick="openTab(event, 'app-info')">الشرح</button>
-                        <button class="tab-btn" onclick="openTab(event, 'app-feats')">المميزات</button>
-                    </div>
-                    <div id="app-info" class="tab-content active">
-                        تطبيق خاص بالمناديب يسهل عمليات البيع والتحصيل من الميدان مع مزامنة لحظية حتى في وضع الأوفلاين.
-                    </div>
-                    <div id="app-feats" class="tab-content">
-                        • تتبع GPS للمناديب.<br>• طباعة فواتير بلوتوث.<br>• واجهة سهلة وسريعة جداً.
-                    </div>
-                    <button class="btn-price" onclick="openQuote('تطبيق الموبايل الميداني')"><i class="fab fa-whatsapp"></i> طلب سعر التطبيق</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" style="text-align: center;">
-            <h2 class="section-title">كن <span>شريكنا</span> اليوم</h2>
-            <p>نحن في البسيط سوفت للأنظمة والتطبيقات ننتظرك لنبدأ النجاح معاً.</p>
-            <div style="margin-top: 30px;">
-                <p><i class="fas fa-phone"></i> 777335118</p>
-                <p><i class="fas fa-map-marker-alt"></i> اليمن - صنعاء</p>
-            </div>
-        </section>
-    </main>
-
-    <div id="quoteModal" class="modal">
-        <div class="modal-content">
-            <h3 style="color: var(--maroon); margin-bottom: 15px;">طلب عرض سعر سريع</h3>
-            <input type="text" id="cust_name" placeholder="الاسم الكريم">
-            <input type="text" id="target_sys" readonly style="background: rgba(128,0,0,0.1);">
-            <textarea id="cust_msg" rows="3" placeholder="أي تفاصيل أو متطلبات خاصة"></textarea>
-            <button class="btn-price" style="width: 100%; justify-content: center;" onclick="sendWhatsApp()">إرسال الطلب <i class="fab fa-whatsapp"></i></button>
-            <button onclick="closeModal()" style="margin-top:10px; background:none; border:none; color:#888; cursor:pointer; width:100%;">إغلاق</button>
+<nav>
+    <div class="dropdown">
+        <button class="dropbtn">الأنظمة التجارية والخدمية ▼</button>
+        <div class="dropdown-content">
+            <a href="#">نظام التجارة العامة</a>
+            <a href="#">نظام المطاعم والكفتيريا</a>
+            <a href="#">نظام السوبر ماركت</a>
+            <a href="#">نظام الصيدليات</a>
+            <a href="#">نظام محلات الملابس</a>
+            <a href="#">نظام العطور والتجميل</a>
+            <a href="#">نظام الأدوات المنزلية</a>
+            <a href="#">نظام الأجهزة الإلكترونية</a>
+            <a href="#">نظام الجوالات وصيانتها</a>
+            <a href="#">نظام قطع الغيار والزيوت</a>
+            <a href="#">نظام المكتبات والقرطاسية</a>
+            <a href="#">نظام المفروشات والأثاث</a>
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 البسيط سوفت للأنظمة والتطبيقات | م. حافظ جابر</p>
-    </footer>
+    <div class="dropdown">
+        <button class="dropbtn">الأنظمة المتخصصة ▼</button>
+        <div class="dropdown-content">
+            <a href="#">نظام المراكز الطبية</a>
+            <a href="#">نظام المنشآت التعليمية (مدارس/معاهد)</a>
+            <a href="#">نظام مزارع الدواجن</a>
+            <a href="#">نظام المبيدات الزراعية</a>
+            <a href="#">نظام العقارات والأراضي</a>
+            <a href="#">نظام المقاولات ومواد البناء</a>
+            <a href="#">نظام معامل الإنتاج والتصنيع</a>
+            <a href="#">نظام الورش (ألمنيوم/حديد)</a>
+            <a href="#">نظام محطات الغاز</a>
+            <a href="#">نظام الشحن الداخلي والخارجي</a>
+            <a href="#">نظام تأجير السيارات</a>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
+    <div class="dropdown">
+        <button class="dropbtn">أنظمة الخدمات العامة ▼</button>
+        <div class="dropdown-content">
+            <a href="#">نظام المتعهدين والحفلات</a>
+            <a href="#">نظام النوادي الرياضية</a>
+            <a href="#">نظام الاستراحات والمنتزهات</a>
+            <a href="#">نظام الموزعين والمندوبين</a>
+            <a href="#">نظام الدعاية والإعلان</a>
+            <a href="#">نظام محلات القات</a>
+            <a href="#">نظام البن والبهارات</a>
+        </div>
+    </div>
+</nav>
 
-        // ترحيب حرف بحرف
-        const welcomeStr = "البسيط سوفت للأنظمة والتطبيقات.. الريادة في عالم البرمجيات.";
-        let i = 0;
-        function typeWriter() {
-            if (i < welcomeStr.length) {
-                document.getElementById("welcome-text").innerHTML += welcomeStr.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            } else {
-                setTimeout(() => { document.getElementById("loader").style.display = "none"; }, 1000);
-            }
-        }
-        window.onload = typeWriter;
+<div class="container">
+    <div class="hero-section">
+        <h2>لماذا البسيط سوفت هي الأفضل؟</h2>
+        <p>لأننا نقدم أنظمة برمجية متكاملة مصممة خصيصاً لتناسب طبيعة السوق اليمني، مع سهولة تامة في الإدارة ودقة في التقارير المحاسبية.</p>
+        <hr>
+        <p>تواصل معنا الآن للحصول على نسختك:</p>
+        <h3>777335118 - 776410334</h3>
+    </div>
+</div>
 
-        // نظام التبويبات
-        function openTab(evt, tabId) {
-            const card = evt.currentTarget.closest('.service-card');
-            card.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-            card.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
+<footer>
+    &copy; 2026 البسيط سوفت - جميع الحقوق محفوظة
+</footer>
 
-        // واتساب
-        function openQuote(sys) {
-            document.getElementById('target_sys').value = sys;
-            document.getElementById('quoteModal').style.display = 'flex';
-        }
-        function closeModal() { document.getElementById('quoteModal').style.display = 'none'; }
-        function sendWhatsApp() {
-            const text = `أهلاً البسيط سوفت، أنا ${document.getElementById('cust_name').value}.%0Aأطلب سعر: *${document.getElementById('target_sys').value}*.%0Aملاحظات: ${document.getElementById('cust_msg').value}`;
-            window.open(`https://wa.me/967777335118?text=${text}`, '_blank');
-            closeModal();
-        }
-
-        // الجزيئات الفضية اللماعة "الخرافية"
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 150, density: { enable: true, value_area: 800 } },
-                color: { value: ["#ffffff", "#c0c0c0", "#e0e0e0"] },
-                shape: { type: "circle" },
-                opacity: { 
-                    value: 0.9, 
-                    random: true, 
-                    anim: { enable: true, speed: 1.5, opacity_min: 0.1, sync: false } 
-                },
-                size: { 
-                    value: 4, 
-                    random: true, 
-                    anim: { enable: true, speed: 3, size_min: 0.1, sync: false } 
-                },
-                line_linked: { 
-                    enable: true, 
-                    distance: 120, 
-                    color: "#ffffff", 
-                    opacity: 0.2, 
-                    width: 1 
-                },
-                move: { 
-                    enable: true, 
-                    speed: 2, 
-                    direction: "none", 
-                    random: true, 
-                    out_mode: "out" 
-                }
-            },
-            interactivity: {
-                events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: true, mode: "push" } },
-                modes: { bubble: { distance: 200, size: 8, duration: 0.3, opacity: 1 } }
-            },
-            retina_detect: true
-        });
-    </script>
 </body>
 </html>
